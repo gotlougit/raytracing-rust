@@ -15,6 +15,17 @@ impl ops::Add<Vec3> for Vec3 {
     }
 }
 
+impl ops::Sub<Vec3> for Vec3 {
+    type Output = Vec3;
+    fn sub(self: Vec3, _rhs: Vec3) -> Vec3 {
+        let mut newarr = [0f64; 3];
+        newarr[0] = self.data[0] - _rhs.data[0];
+        newarr[1] = self.data[1] - _rhs.data[1];
+        newarr[2] = self.data[2] - _rhs.data[2];
+        Vec3 { data: newarr }
+    }
+}
+
 impl ops::Mul<f64> for Vec3 {
     type Output = Vec3;
     fn mul(self, rhs: f64) -> Vec3 {
