@@ -1,6 +1,6 @@
 use std::ops;
 
-struct Vec3 {
+pub struct Vec3 {
     pub data: [f64; 3],
 }
 
@@ -57,5 +57,31 @@ impl Vec3 {
     }
     pub fn length(self) -> f64 {
         self.length_squared().sqrt()
+    }
+}
+
+pub fn dot(v1 :&Vec3, v2: &Vec3) -> f64 {
+    let x1 = v1.data[0];
+    let y1 = v1.data[1];
+    let z1 = v1.data[2];
+    let x2 = v2.data[0];
+    let y2 = v2.data[1];
+    let z2 = v2.data[2];
+    return x1*x2 + y1*y2 + z1*z2;
+}
+
+pub fn cross(v1 :&Vec3, v2: &Vec3) -> Vec3 {
+    let x1 = v1.data[0];
+    let y1 = v1.data[1];
+    let z1 = v1.data[2];
+    let x2 = v2.data[0];
+    let y2 = v2.data[1];
+    let z2 = v2.data[2];
+    let mut newarr = [0f64; 3];
+    newarr[0] = y1*z2 - z1*y2;
+    newarr[1] = z1*x2 - x1*z2;
+    newarr[2] = x1*y2 - y1*x2;
+    Vec3 {
+        data: newarr
     }
 }
