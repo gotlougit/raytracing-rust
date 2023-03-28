@@ -3,7 +3,7 @@ use std::io::Write;
 use std::ops;
 
 struct Vec3 {
-    data: [u8; 3]
+    data: [u8; 3],
 }
 
 impl ops::Add<Vec3> for Vec3 {
@@ -13,15 +13,13 @@ impl ops::Add<Vec3> for Vec3 {
         newarr[0] = self.data[0] + _rhs.data[0];
         newarr[1] = self.data[1] + _rhs.data[1];
         newarr[2] = self.data[2] + _rhs.data[2];
-        Vec3 {
-            data: newarr
-        }
+        Vec3 { data: newarr }
     }
 }
 
 fn write_to_file(data: String, fd: &mut File) {
     match fd.write_all(data.as_bytes()) {
-        Ok(_) => {},
+        Ok(_) => {}
         Err(e) => {
             eprintln!("FATAL ERROR while writing to file: {}", e);
         }
@@ -37,9 +35,9 @@ fn main() {
     for j in (0..width).rev() {
         print!("\rScanlines remaining: {}", j);
         for i in 0..width {
-            let r : f64 = i as f64 / (width-1) as f64;
-            let g : f64 = j as f64 / (width-1) as f64;
-            let b : f64 = 0.25;
+            let r: f64 = i as f64 / (width - 1) as f64;
+            let g: f64 = j as f64 / (width - 1) as f64;
+            let b: f64 = 0.25;
             let ir = (255.999 * r) as i32;
             let ig = (255.999 * g) as i32;
             let ib = (255.999 * b) as i32;
