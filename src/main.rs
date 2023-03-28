@@ -25,9 +25,7 @@ fn main() {
             let g: f64 = j as f64 / (width - 1) as f64;
             let b: f64 = 0.25;
             let data = [r, g, b];
-            let color = vec3::Vec3 {
-                data
-            };
+            let color = vec3::Vec3 { data };
             write_to_file(color.to_string(), &mut file);
         }
     }
