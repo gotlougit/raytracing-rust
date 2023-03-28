@@ -24,10 +24,11 @@ fn main() {
             let r: f64 = i as f64 / (width - 1) as f64;
             let g: f64 = j as f64 / (width - 1) as f64;
             let b: f64 = 0.25;
-            let ir = (255.999 * r) as i32;
-            let ig = (255.999 * g) as i32;
-            let ib = (255.999 * b) as i32;
-            write_to_file(format!("{} {} {}\n", ir, ig, ib), &mut file);
+            let data = [r, g, b];
+            let color = vec3::Vec3 {
+                data
+            };
+            write_to_file(color.to_string(), &mut file);
         }
     }
     println!("\nDone");

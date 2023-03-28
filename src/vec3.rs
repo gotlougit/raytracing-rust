@@ -1,7 +1,17 @@
 use std::ops;
+use std::fmt;
 
 pub struct Vec3 {
     pub data: [f64; 3],
+}
+
+impl fmt::Display for Vec3 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let ir = (255.999 * self.data[0]) as i32;
+        let ig = (255.999 * self.data[1]) as i32;
+        let ib = (255.999 * self.data[2]) as i32;
+        write!(f, "{} {} {}\n", ir, ig, ib)
+    }
 }
 
 impl ops::Add<Vec3> for Vec3 {
