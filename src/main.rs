@@ -1,12 +1,21 @@
-use std::fs;
+use std::fs::File;
 use std::io::Write;
+
+fn write_to_file(data: String, fd: &mut File) {
+    match fd.write_all(data.as_bytes()) {
+        Ok(_) => {},
+        Err(e) => {
+            eprintln!("FATAL ERROR while writing to file: {}", e);
+        }
+    }
+}
 
 fn main() {
     let filename = "out.ppm";
-    let mut file = fs::File::create(filename).unwrap();
+    let mut file = File::create(filename).unwrap();
     let width = 512;
     let height = 512;
-    file.write_all(format!("P3\n{} {}\n255\n", width, height).as_bytes()).unwrap();
+    write_to_file(format!("P3\n{} {}\n255\n", width, height), &mut file);
     for j in (0..width).rev() {
         print!("\rScanlines remaining: {}", j);
         for i in 0..width {
@@ -16,7 +25,7 @@ fn main() {
             let ir = (255.999 * r) as i32;
             let ig = (255.999 * g) as i32;
             let ib = (255.999 * b) as i32;
-            file.write_all(format!("{} {} {}\n", ir, ig, ib).as_bytes()).unwrap();
+            write_to_file(format!("{} {} {}\n", ir, ig, ib), &mut file);
         }
     }
     println!("\nDone");
