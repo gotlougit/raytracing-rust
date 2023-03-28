@@ -1,7 +1,7 @@
 use std::ops;
 
 struct Vec3 {
-    data: [f64; 3],
+    pub data: [f64; 3],
 }
 
 impl ops::Add<Vec3> for Vec3 {
@@ -49,15 +49,6 @@ impl ops::Div<f64> for Vec3 {
 }
 
 impl Vec3 {
-    pub fn get_x(self) -> f64 {
-        self.data[0]
-    }
-    pub fn get_y(self) -> f64 {
-        self.data[1]
-    }
-    pub fn get_z(self) -> f64 {
-        self.data[2]
-    }
     pub fn length_squared(self) -> f64 {
         let x = self.data[0];
         let y = self.data[1];
