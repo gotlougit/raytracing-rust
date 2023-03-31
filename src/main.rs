@@ -2,6 +2,7 @@ use std::fs::File;
 use std::io::Write;
 
 mod vec3;
+mod ray;
 
 fn write_to_file(data: String, fd: &mut File) {
     match fd.write_all(data.as_bytes()) {
