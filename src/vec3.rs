@@ -1,6 +1,7 @@
 use std::fmt;
 use std::ops;
 
+#[derive(Clone, Copy)]
 pub struct Vec3 {
     pub data: [f64; 3],
 }
@@ -59,13 +60,13 @@ impl ops::Div<f64> for Vec3 {
 }
 
 impl Vec3 {
-    pub fn length_squared(self) -> f64 {
+    pub fn length_squared(&self) -> f64 {
         let x = self.data[0];
         let y = self.data[1];
         let z = self.data[2];
         return x * x + y * y + z * z;
     }
-    pub fn length(self) -> f64 {
+    pub fn length(&self) -> f64 {
         self.length_squared().sqrt()
     }
 }
@@ -95,7 +96,12 @@ pub fn cross(v1: &Vec3, v2: &Vec3) -> Vec3 {
 }
 
 pub fn unit(v: &Vec3) -> Vec3 {
-    let ud = [v.data[0]/v.length(), v.data[1]/v.length(), v.data[2]/v.length()];
+    let x = v.data[0];
+    let y = v.data[1];
+    let z = v.data[2];
+    let len = v.length();
+
+    let ud = [x/len, y/len, z/len];
     Vec3 {
         data: ud
     }
