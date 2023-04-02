@@ -101,8 +101,6 @@ pub fn unit(v: &Vec3) -> Vec3 {
     let z = v.data[2];
     let len = v.length();
 
-    let ud = [x/len, y/len, z/len];
-    Vec3 {
-        data: ud
-    }
+    let ud = [x / len, y / len, z / len];
+    Vec3 { data: ud }
 }
