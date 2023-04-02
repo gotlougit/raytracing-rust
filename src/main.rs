@@ -5,8 +5,16 @@ mod ray;
 mod vec3;
 
 fn vertical_gradient(r: ray::Ray) -> vec3::Vec3 {
-    let white = vec3::Vec3 { x: 1.0, y: 1.0, z: 1.0 };
-    let blue = vec3::Vec3 { x: 0.5, y: 0.7, z: 1.0 };
+    let white = vec3::Vec3 {
+        x: 1.0,
+        y: 1.0,
+        z: 1.0,
+    };
+    let blue = vec3::Vec3 {
+        x: 0.5,
+        y: 0.7,
+        z: 1.0,
+    };
     let unitdir = vec3::unit(&r.dir);
     let t = 0.5 * (unitdir.y + 1.0);
     white * (1.0 - t) + blue * t
@@ -33,11 +41,29 @@ fn main() {
     let viewport_width = aspect_ratio * viewport_height;
     let focal_length = 1.0;
 
-    let origin = vec3::Vec3 { x: 0.0, y : 0.0, z: 0.0 };
-    let horizontal = vec3::Vec3 { x: viewport_width, y: 0.0, z: 0.0 };
-    let vertical = vec3::Vec3 { x: 0.0, y: viewport_height, z: 0.0 };
-    let lower_left_corner =
-        origin - horizontal / 2.0 - vertical / 2.0 - vec3::Vec3 { x: 0.0, y: 0.0, z: focal_length };
+    let origin = vec3::Vec3 {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0,
+    };
+    let horizontal = vec3::Vec3 {
+        x: viewport_width,
+        y: 0.0,
+        z: 0.0,
+    };
+    let vertical = vec3::Vec3 {
+        x: 0.0,
+        y: viewport_height,
+        z: 0.0,
+    };
+    let lower_left_corner = origin
+        - horizontal / 2.0
+        - vertical / 2.0
+        - vec3::Vec3 {
+            x: 0.0,
+            y: 0.0,
+            z: focal_length,
+        };
 
     write_to_file(format!("P3\n{} {}\n255\n", width, height), &mut file);
     for j in (0..width).rev() {

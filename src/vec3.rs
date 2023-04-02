@@ -33,7 +33,7 @@ impl ops::Sub<Vec3> for Vec3 {
         let x = self.x - _rhs.x;
         let y = self.y - _rhs.y;
         let z = self.z - _rhs.z;
-        Vec3 { x,y,z }
+        Vec3 { x, y, z }
     }
 }
 
