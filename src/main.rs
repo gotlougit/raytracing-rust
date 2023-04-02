@@ -4,29 +4,33 @@ use std::io::Write;
 mod ray;
 mod vec3;
 
-fn hit_sphere(center: &vec3::Vec3, radius: f64, ray: &ray::Ray) -> bool {
+fn hit_sphere(center: &vec3::Vec3, radius: f64, ray: &ray::Ray) -> f64 {
     let oc = ray.origin - *center;
     let a = vec3::dot(&ray.dir, &ray.dir);
     let b = vec3::dot(&oc, &ray.dir) * 2.0;
     let c = vec3::dot(&oc, &oc) - radius * radius;
     let d = b * b - 4.0 * a * c;
-    d > 0.0
+    if d > 0.0 {
+        return (-b - d.sqrt()) / (2.0 * a);
+    } else {
+        return -1.0;
+    }
 }
 
 fn vertical_gradient(r: ray::Ray) -> vec3::Vec3 {
     let center = vec3::Vec3 {
         x: 0.0,
         y: 0.0,
-        z: 1.0,
-    };
-    let sphere_color = vec3::Vec3 {
-        x: 1.0,
-        y: 0.0,
-        z: 0.0,
+        z: -1.0,
     };
     let sphere_radius = 0.5;
-    if hit_sphere(&center, sphere_radius, &r) {
-        return sphere_color;
+    let t = hit_sphere(&center, sphere_radius, &r);
+    if t > 0.0 {
+        let n = vec3::unit(&(r.at(t) - center));
+        let x = n.x + 1.0;
+        let y = n.y + 1.0;
+        let z = n.z + 1.0;
+        return vec3::Vec3 { x, y, z } * 0.5;
     }
     let white = vec3::Vec3 {
         x: 1.0,
