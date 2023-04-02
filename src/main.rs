@@ -88,11 +88,11 @@ fn main() {
         };
 
     write_to_file(format!("P3\n{} {}\n255\n", width, height), &mut file);
-    for j in (0..width).rev() {
+    for j in (0..height).rev() {
         print!("\rScanlines remaining: {} ", j);
         for i in 0..width {
             let u = i as f64 / (width - 1) as f64;
-            let v = j as f64 / (width - 1) as f64;
+            let v = j as f64 / (height - 1) as f64;
             let r = ray::Ray {
                 origin,
                 dir: lower_left_corner + horizontal * u + vertical * v - origin,
