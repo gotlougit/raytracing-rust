@@ -19,13 +19,14 @@ fn vertical_gradient(r: ray::Ray) -> vec3::Vec3 {
         y: 0.0,
         z: 1.0,
     };
-    let red = vec3::Vec3 {
+    let sphere_color = vec3::Vec3 {
         x: 1.0,
         y: 0.0,
         z: 0.0,
     };
-    if hit_sphere(&center, 0.2, &r) {
-        return red;
+    let sphere_radius = 0.5;
+    if hit_sphere(&center, sphere_radius, &r) {
+        return sphere_color;
     }
     let white = vec3::Vec3 {
         x: 1.0,
