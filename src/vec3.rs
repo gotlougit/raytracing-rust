@@ -93,3 +93,10 @@ pub fn cross(v1: &Vec3, v2: &Vec3) -> Vec3 {
     newarr[2] = x1 * y2 - y1 * x2;
     Vec3 { data: newarr }
 }
+
+pub fn unit(v: &Vec3) -> Vec3 {
+    let ud = [v.data[0]/v.length(), v.data[1]/v.length(), v.data[2]/v.length()];
+    Vec3 {
+        data: ud
+    }
+}
