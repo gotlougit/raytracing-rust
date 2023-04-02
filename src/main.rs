@@ -36,17 +36,17 @@ fn main() {
     let focal_length = 1.0;
 
     let mut data = [0f64; 3];
-    let origin = vec3::Vec3 { data: data.clone() };
+    let origin = vec3::Vec3 { data };
     data[0] = viewport_width;
-    let horizontal = vec3::Vec3 { data: data.clone() };
+    let horizontal = vec3::Vec3 { data };
     data[0] = 0.0;
     data[1] = viewport_height;
-    let vertical = vec3::Vec3 { data: data.clone() };
+    let vertical = vec3::Vec3 { data };
     data[0] = 0.0;
     data[1] = 0.0;
     data[2] = focal_length;
     let lower_left_corner =
-        origin - horizontal / 2.0 - vertical / 2.0 - vec3::Vec3 { data: data.clone() };
+        origin - horizontal / 2.0 - vertical / 2.0 - vec3::Vec3 { data };
 
     write_to_file(format!("P3\n{} {}\n255\n", width, height), &mut file);
     for j in (0..width).rev() {
