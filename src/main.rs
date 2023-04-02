@@ -34,7 +34,7 @@ fn main() {
     let mut file = File::create(filename).unwrap();
 
     let aspect_ratio = 16.0 / 9.0;
-    let height = 720;
+    let height = 400;
     let width = (height as f64 * aspect_ratio) as i32;
 
     let viewport_height = 2.0;
